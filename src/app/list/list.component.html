@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>Users</h2>
+
+<div class="search-container">
+    
+<input type="text" [(ngModel)]="searchQuery" placeholder="Search by email" (keyup.enter)="filterUsers()">
+<button (click)="filterUsers()">Search</button>
+<p class="not" *ngIf="filteredUsers.length === 0"> Not Available </p>
+</div>
+
+
+  
+  <div class="user-list">
+      <div class="user-card" *ngFor="let user of filteredUsers">
+          <img [src]="user.image" alt="User Image">
+          <h3>{{ user.username }}</h3>
+          <p><strong>Email:</strong> {{ user.email }}</p>
+          <p><strong>Phone:</strong> {{ user.phone }}</p>
+          <p><strong>Age:</strong> {{ user.age }}</p>
+          <span class="status" [class.verified]="user.is_verified" [class.not-verified]="!user.is_verified">
+              {{ user.is_verified ? ' Verified' : ' Not Verified' }}
+          </span>
+      </div>
+  </div>
+</div>
